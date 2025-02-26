@@ -67,6 +67,7 @@ public class UserServiceImpl implements UserService {
                 .isVerified(false)
                 .verificationToken(token)
                 .tokenExpiryDate(LocalDateTime.now().plusHours(24))
+                .createdAt(LocalDateTime.now())
                 .roles(List.of(userRole))
                 .build();
 
