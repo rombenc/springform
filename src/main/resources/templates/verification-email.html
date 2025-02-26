@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Verification</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .content p {
+            font-size: 16px;
+            color: #555555;
+            line-height: 1.5;
+        }
+
+        .verification-box {
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .verification-box h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: #333333;
+        }
+
+        .verification-code {
+            font-size: 22px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #999999;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h2>Welcome to Our App!</h2>
+    </div>
+    <div class="content">
+        <p>Please click the link below to verify your account:</p>
+        <div class="verification-box">
+            <h3>Verification Link:</h3>
+            <p class="verification-code">
+                <a th:href="${verificationLink}">Verify your account</a>
+            </p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>If you didn't request this, please ignore this email. Need help? <a href="#">Contact Support</a></p>
+    </div>
+</div>
+</body>
+
+</html>
