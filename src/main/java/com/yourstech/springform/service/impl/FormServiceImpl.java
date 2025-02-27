@@ -6,6 +6,7 @@ import com.yourstech.springform.dto.response.FormDetailResponse;
 import com.yourstech.springform.dto.response.FormResponse;
 import com.yourstech.springform.dto.response.QuestionResponse;
 import com.yourstech.springform.mapper.FormMapper;
+import com.yourstech.springform.model.AllowedDomain;
 import com.yourstech.springform.model.Form;
 import com.yourstech.springform.repository.FormRepository;
 import com.yourstech.springform.service.FormService;
@@ -70,13 +71,15 @@ public class FormServiceImpl implements FormService {
         Form form = formRepository.findBySlug(slug)
                 .orElseThrow(() -> new RuntimeException("Form not found"));
 
-        var response = FormDetailResponse.builder()
+        FormDetailResponse.builder()
                 .id(form.getId())
                 .name(form.getName())
                 .slug(form.getSlug())
                 .description(form.getDescription())
                 .limitOneResponse(form.getLimitOneResponse())
-                .allowedDomains(String.valueOf(form.getAllowedDomains()))
+                .allowedDomains(form.getAllowedDomains().stream()
+                        .map(AllowedDomain::getDomain)
+                        .toList())
                 .questions(form.getQuestions().stream()
                         .map(q -> QuestionResponse.builder()
                                 .id(q.getId())

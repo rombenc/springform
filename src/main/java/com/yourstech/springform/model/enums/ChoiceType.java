@@ -1,7 +1,10 @@
 package com.yourstech.springform.model.enums;
 
 public enum ChoiceType {
-    SINGLE,
-    MULTI,
-    TEXT
+    SHORT_ANSWER,
+    PARAGRAPH,
+    DATE_INPUT,
+    MULTIPLE_CHOICE,
+    DROPDOWN,
+    CHECKBOXES
 }

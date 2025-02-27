@@ -1,5 +1,7 @@
 package com.yourstech.springform.service.impl;
 
+import com.yourstech.springform.dto.request.AllowedDomainRequest;
+import com.yourstech.springform.dto.response.AllowedDomainResponse;
 import com.yourstech.springform.dto.response.CommonResponse;
 import com.yourstech.springform.model.AllowedDomain;
 import com.yourstech.springform.model.Form;
@@ -21,44 +23,68 @@ public class AllowedDomainServiceImpl implements AllowedDomainService {
 
     @Transactional
     @Override
-    public CommonResponse<List<AllowedDomain>> addAllowedDomains(String formSlug, List<AllowedDomain> domains) {
+    public CommonResponse<List<AllowedDomainResponse>> addAllowedDomains(String formSlug, AllowedDomainRequest allowedDomainRequest) {
         Form form = formRepository.findBySlug(formSlug)
                 .orElseThrow(() -> new RuntimeException("Form not found"));
 
-        form.getAllowedDomains().addAll(domains);
-        formRepository.save(form);
+        List<AllowedDomain> newAllowedDomains = allowedDomainRequest.getDomain().stream()
+                .map(domain -> AllowedDomain.builder()
+                        .domain(domain)
+                        .form(form)
+                        .build())
+                .toList();
 
-        return CommonResponse.<List<AllowedDomain>>builder()
+        // Simpan di database
+        allowedDomainRepository.saveAll(newAllowedDomains);
+
+        return CommonResponse.<List<AllowedDomainResponse>>builder()
                 .status(HttpStatus.OK.value())
                 .message("Allowed domains added successfully")
-                .data(form.getAllowedDomains())
+                .data(newAllowedDomains.stream()
+                        .map(domain -> new AllowedDomainResponse(domain.getId(), domain.getDomain()))
+                        .toList())
                 .build();
     }
 
     @Override
-    public CommonResponse<List<AllowedDomain>> getAllowedDomains(String formSlug) {
+    public CommonResponse<List<AllowedDomainResponse>> getAllowedDomains(String formSlug) {
         Form form = formRepository.findBySlug(formSlug)
                 .orElseThrow(() -> new RuntimeException("Form not found"));
 
-        return CommonResponse.<List<AllowedDomain>>builder()
+        List<AllowedDomainResponse> response = form.getAllowedDomains().stream()
+                .map(domain -> new AllowedDomainResponse(domain.getId(), domain.getDomain()))
+                .toList();
+
+        return CommonResponse.<List<AllowedDomainResponse>>builder()
                 .status(HttpStatus.OK.value())
                 .message("Allowed domains retrieved successfully")
-                .data(form.getAllowedDomains())
+                .data(response)
                 .build();
     }
+
 
     @Transactional
     @Override
-    public CommonResponse<Void> removeAllowedDomains(String formSlug, List<AllowedDomain> domains) {
+    public CommonResponse<Void> removeAllowedDomains(String formSlug, AllowedDomainRequest allowedDomainRequest) {
         Form form = formRepository.findBySlug(formSlug)
                 .orElseThrow(() -> new RuntimeException("Form not found"));
 
-        form.getAllowedDomains().removeAll(domains);
-        formRepository.save(form);
+        // Ambil list domain yang akan dihapus
+        List<AllowedDomain> toRemove = form.getAllowedDomains().stream()
+                .filter(domain -> allowedDomainRequest.getDomain().contains(domain.getDomain()))
+                .toList();
+
+        if (toRemove.isEmpty()) {
+            throw new RuntimeException("No matching allowed domains found");
+        }
+
+        allowedDomainRepository.deleteAll(toRemove);
 
         return CommonResponse.<Void>builder()
                 .status(HttpStatus.OK.value())
                 .message("Allowed domains removed successfully")
                 .build();
     }
+
 }
+

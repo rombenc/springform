@@ -20,4 +20,7 @@ public class AllowedDomain {
     @ManyToOne
     @JoinColumn(name = "form_id")
     private Form form;
+
+    public AllowedDomain(String domain, Form form) {
+    }
 }

@@ -3,6 +3,7 @@ package com.yourstech.springform.mapper;
 import com.yourstech.springform.dto.response.FormDetailResponse;
 import com.yourstech.springform.dto.response.FormResponse;
 import com.yourstech.springform.dto.response.QuestionResponse;
+import com.yourstech.springform.model.AllowedDomain;
 import com.yourstech.springform.model.Form;
 import com.yourstech.springform.model.Question;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,9 @@ public class FormMapper {
                 .slug(form.getSlug())
                 .name(form.getName())
                 .description(form.getDescription())
-                .allowedDomains(String.valueOf(form.getAllowedDomains()))
+                .allowedDomains(form.getAllowedDomains().stream()
+                        .map(AllowedDomain::getDomain)
+                        .toList())
                 .limitOneResponse(form.getLimitOneResponse())
                 .build();
     }
@@ -35,7 +38,9 @@ public class FormMapper {
                 .slug(form.getSlug())
                 .description(form.getDescription())
                 .limitOneResponse(form.getLimitOneResponse())
-                .allowedDomains(String.valueOf(form.getAllowedDomains()))
+                .allowedDomains(form.getAllowedDomains().stream()
+                        .map(AllowedDomain::getDomain)
+                        .toList())
                 .questions(toQuestionResponseList(form.getQuestions()))
                 .build();
     }

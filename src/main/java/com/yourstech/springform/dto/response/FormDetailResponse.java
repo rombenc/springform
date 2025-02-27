@@ -13,6 +13,6 @@ public class FormDetailResponse {
     private String slug;
     private String description;
     private Boolean limitOneResponse;
-    private String allowedDomains;
+    private List<String> allowedDomains;
     private List<QuestionResponse> questions;
 }

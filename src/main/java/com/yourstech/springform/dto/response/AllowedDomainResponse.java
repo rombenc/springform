@@ -5,17 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FormResponse {
+public class AllowedDomainResponse {
     private Integer id;
-    private String slug;
-    private String name;
-    private String description;
-    private Boolean limitOneResponse;
-    private List<String> allowedDomains;
+    private String domain;
+
 }

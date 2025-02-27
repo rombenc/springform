@@ -1,5 +1,6 @@
 package com.yourstech.springform.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,5 +35,6 @@ public class Form {
     private Boolean limitOneResponse;
 
     @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<AllowedDomain> allowedDomains;
 }

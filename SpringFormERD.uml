@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.allowed_domains</OriginalElement>
+  <nodes>
+    <node x="635.5" y="-0.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.forms</node>
+    <node x="687.5" y="-160.0">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.users_roles</node>
+    <node x="645.0" y="264.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.blacklisted_tokens</node>
+    <node x="-165.0" y="-55.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.users</node>
+    <node x="1030.0" y="-190.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.submit</node>
+    <node x="1398.5" y="60.0">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.question_choices</node>
+    <node x="1024.0" y="14.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.questions</node>
+    <node x="1410.5" y="-150.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.answers</node>
+    <node x="193.5" y="-190.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.roles</node>
+    <node x="1040.5" y="264.5">15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.allowed_domains</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.questions" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.forms" relationship="REFERENCES">
+      <point x="-134.0" y="0.0" />
+      <point x="142.5" y="0.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.answers" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.submit" relationship="REFERENCES">
+      <point x="-107.5" y="-42.75" />
+      <point x="1378.0" y="-107.75" />
+      <point x="1378.0" y="-105.0" />
+      <point x="128.0" y="0.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.users_roles" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.roles" relationship="REFERENCES">
+      <point x="-90.5" y="-27.5" />
+      <point x="658.0" y="-132.5" />
+      <point x="658.0" y="-105.0" />
+      <point x="164.5" y="0.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.allowed_domains" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.forms" relationship="REFERENCES">
+      <point x="-117.5" y="0.0" />
+      <point x="998.0" y="335.0" />
+      <point x="998.0" y="115.0" />
+      <point x="142.5" y="0.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.answers" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.questions" relationship="REFERENCES">
+      <point x="-107.5" y="42.75" />
+      <point x="1378.0" y="-22.25" />
+      <point x="1378.0" y="115.0" />
+      <point x="134.0" y="0.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.forms" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.users" relationship="REFERENCES">
+      <point x="-142.5" y="0.0" />
+      <point x="598.0" y="115.0" />
+      <point x="598.0" y="262.0" />
+      <point x="163.0" y="127.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.question_choices" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.questions" relationship="REFERENCES">
+      <point x="-119.5" y="0.0" />
+      <point x="134.0" y="0.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.users_roles" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.users" relationship="REFERENCES">
+      <point x="-90.5" y="27.5" />
+      <point x="558.0" y="-77.5" />
+      <point x="558.0" y="8.0" />
+      <point x="163.0" y="-127.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.submit" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.forms" relationship="REFERENCES">
+      <point x="-128.0" y="42.75" />
+      <point x="998.0" y="-62.25" />
+      <point x="998.0" y="115.0" />
+      <point x="142.5" y="0.0" />
+    </edge>
+    <edge source="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.submit" target="15203df6-72ca-430b-8fb6-a8530f836151.TABLE:springform_db.public.users" relationship="REFERENCES">
+      <point x="-128.0" y="-42.75" />
+      <point x="978.0" y="-147.75" />
+      <point x="978.0" y="-25.0" />
+      <point x="578.0" y="-25.0" />
+      <point x="578.0" y="135.0" />
+      <point x="163.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.9983543609434997" showDependencies="false" x="744.7615384615376" y="120.23791208791135" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

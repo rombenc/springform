@@ -9,7 +9,6 @@ import lombok.Setter;
 public class FormRequest {
 
     private String slug;
-    private String title;
     private String name;
     private String description;
     private Boolean limitOneResponse;

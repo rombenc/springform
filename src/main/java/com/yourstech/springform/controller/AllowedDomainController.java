@@ -1,7 +1,8 @@
 package com.yourstech.springform.controller;
 
+import com.yourstech.springform.dto.request.AllowedDomainRequest;
+import com.yourstech.springform.dto.response.AllowedDomainResponse;
 import com.yourstech.springform.dto.response.CommonResponse;
-import com.yourstech.springform.model.AllowedDomain;
 import com.yourstech.springform.service.AllowedDomainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,23 +19,23 @@ public class AllowedDomainController {
     private final AllowedDomainService allowedDomainService;
 
     @PostMapping
-    public ResponseEntity<CommonResponse<List<AllowedDomain>>> addAllowedDomains(
+    public ResponseEntity<CommonResponse<List<AllowedDomainResponse>>> addAllowedDomains(
             @PathVariable String formSlug,
-            @RequestBody List<AllowedDomain> domains) {
-        CommonResponse<List<AllowedDomain>> response = allowedDomainService.addAllowedDomains(formSlug, domains);
+            @RequestBody AllowedDomainRequest domains) {
+        CommonResponse<List<AllowedDomainResponse>> response = allowedDomainService.addAllowedDomains(formSlug, domains);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
     @GetMapping
-    public ResponseEntity<CommonResponse<List<AllowedDomain>>> getAllowedDomains(@PathVariable String formSlug) {
-        CommonResponse<List<AllowedDomain>> response = allowedDomainService.getAllowedDomains(formSlug);
+    public ResponseEntity<CommonResponse<List<AllowedDomainResponse>>> getAllowedDomains(@PathVariable String formSlug) {
+        CommonResponse<List<AllowedDomainResponse>> response = allowedDomainService.getAllowedDomains(formSlug);
         return ResponseEntity.status(response.getStatus()).body(response);
     }
 
     @DeleteMapping
     public ResponseEntity<CommonResponse<Void>> removeAllowedDomains(
             @PathVariable String formSlug,
-            @RequestBody List<AllowedDomain> domains) {
+            @RequestBody AllowedDomainRequest domains) {
         CommonResponse<Void> response = allowedDomainService.removeAllowedDomains(formSlug, domains);
         return ResponseEntity.ok(response);
     }
